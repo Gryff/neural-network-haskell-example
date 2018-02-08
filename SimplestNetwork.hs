@@ -5,7 +5,7 @@ type Weight = Double
 type Vector = [Double]
 
 cost :: Vector -> Vector -> Double
-cost actual expected = (sum errors) / (2 * fromIntegral (length expected))
+cost actual expected = (sum errors) / (fromIntegral $ 2 * length expected)
   where errors = [(yhat - y) ^ 2 | (yhat, y) <- zip actual expected]
 
 errorDerivative :: Vector -> Vector -> Vector -> Double
