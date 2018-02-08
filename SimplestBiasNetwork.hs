@@ -33,7 +33,6 @@ neuralNet weight bias input expectedOutput
       return (weight, bias)
   | otherwise = do
       tell ["Error is " ++ show error ++ ". Doing another round"]
-      tell ["New weight: " ++ show newWeight ++ " New bias: " ++ show newBias]
       neuralNet newWeight newBias input expectedOutput
   where
     output = forward input weight bias
