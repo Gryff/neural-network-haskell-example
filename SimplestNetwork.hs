@@ -15,8 +15,8 @@ errorDerivative actual expected input = (sum errors) / (fromIntegral $ length ex
 forward :: Vector -> Double -> Vector
 forward input weight = map (* weight) input
 
-backward :: Double -> Double -> Double
-backward weight errorDeriv = weight - (alpha * errorDeriv)
+backPropagate :: Double -> Double -> Double
+backPropagate weight errorDeriv = weight - (alpha * errorDeriv)
 
 neuralNet :: Weight -> Vector -> Vector -> Writer [String] Weight
 neuralNet weight input expectedOutput
@@ -30,7 +30,7 @@ neuralNet weight input expectedOutput
     output = forward input weight
     error = cost output expectedOutput
     errorDeriv = errorDerivative output expectedOutput input
-    newWeight = backward weight errorDeriv
+    newWeight = backPropagate weight errorDeriv
 
 closeEnough :: Double -> Bool
 closeEnough error = abs error < 0.0001
